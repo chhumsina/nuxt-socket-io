@@ -39,6 +39,10 @@ function Svc() {
       notify({ evt, data })
       return Promise.resolve()
     },
+    simple({ data }) {
+      console.log('Rxd simple!!', data)
+      return Promise.resolve({ data })
+    },
     titleFromUser(msg) {
       return Promise.resolve({
         data: `received msg ${msg}!`

@@ -1,6 +1,7 @@
 <template>
   <div>
     <div>
+      <button @click="sendSimple()">Send simple</button>
       <h2>Component-defined method:</h2>
       <p>
         This example uses <code>"getMessage()"</code> defined in the component
@@ -70,7 +71,9 @@ export default {
     this.socket = this.$nuxtSocket({
       channel: '/index',
       reconnection: false
+      // teardown: false
     })
+    this.$store.commit('SET_SOCKET', { label: 'mySocket', socket: this.socket })
   },
   methods: {
     getMessage() {
@@ -79,6 +82,12 @@ export default {
           this.messageRxd = resp
           resolve()
         })
+      })
+    },
+    sendSimple() {
+      this.$store.dispatch('SEND_SIMPLE', {
+        label: 'mySocket',
+        nextView: '/examples'
       })
     }
   }

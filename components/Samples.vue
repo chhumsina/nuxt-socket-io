@@ -1,5 +1,6 @@
 <template>
   <div>
+    <button @click="sendSimple()">Send simple</button>
     <div>
       <label>
         Sample Object (will send "examples/sampleObj" when object changes)
@@ -74,6 +75,9 @@ export default {
       const msg = msgs[id % msgs.length]
       const newObj = { id, msg }
       this.$store.commit('examples/SET_SOMEOBJ', newObj)
+    },
+    sendSimple() {
+      this.$store.dispatch('SEND_SIMPLE', { label: 'mySocket', nextView: '/' })
     }
   }
 }
